@@ -1,18 +1,18 @@
 import sys
-import rtsp
+import cv2
 
 
 def main(uri: str):
-    with rtsp.Client(uri) as client:
-        #_image = client.read()
-        print(f'loading ... {uri}')
-        client.read().show()
-        
+    capture = cv2.VideoCapture(uri)
 
-        ## Assertion fctx->async_lock failed at libavcodec/pthread_frame.c:167
-        # while True:
-        #     process_image(_image)
-        #     _image = client.read(raw=True)
+    while(True):
+        ret, frame = capture.read()
+        cv2.imshow('frame', frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    capture.release()
+    cv2.destroyAllWindows()
 
 
 if __name__ == '__main__':
