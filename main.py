@@ -19,5 +19,7 @@ if __name__ == '__main__':
     args = sys.argv
     if len(args) == 1:
         print('1 argument is required.')
+        print('e.g.')
+        print('python main.py rtsp://$USER:$PASS@IPADDRESS:port/xxx')
         sys.exit(1)
     main(args[1])
